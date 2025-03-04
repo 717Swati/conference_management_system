@@ -1,0 +1,135 @@
+body {
+    background: linear-gradient(90deg, rgba(2, 59, 83, 0.573), rgb(13, 63, 90));
+    margin: 0;
+    overflow: hidden;
+}
+
+.regimg {
+    height: 88%;
+    width: 53%;
+    position: fixed;
+    left: -20px;
+    top: 90px;
+}
+
+
+.rform {
+    position: absolute;
+    left: 75%;
+    top: 59%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    color: aqua;
+}
+
+form {
+    width: 100%;
+    height: auto;
+    background: transparent;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(217, 244, 153, 0.5);
+}
+
+
+form input {
+    width: 80%;
+    margin-top: 10px;
+    margin-left: 38px;
+    font-weight: bold;
+    border-radius: 30px;
+    background: transparent;
+    border: 2px solid rgba(128, 208, 255, 0.875);
+    color: white;
+    padding: 10px;
+}
+
+form input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+form select {
+    width: 40%;
+    margin-top: 10px;
+    margin-left: 25px;
+    border-radius: 10px;
+    background: transparent;
+    border: 2px solid rgba(128, 208, 255, 0.875);
+    color: rgb(250, 234, 234);
+    padding: 5px;
+}
+
+form select option {
+    color: black;
+}
+
+form label {
+    margin-top: 20px;
+    margin-left: 46px;
+    font-weight: bold;
+    color: white;
+}
+
+#submitbtn {
+    position: relative;
+    left: 38%;
+    margin-top: 4%;
+    margin-bottom: 2%;
+    border-radius: 30px;
+    border: 2px solid rgba(2, 17, 56, 0.903);
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.338);
+    color: rgb(18, 12, 12);
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+#submitbtn:hover {
+    background: rgba(244, 215, 215, 0.857);
+    color: black;
+}
+
+
+p {
+    font-size: 15px;
+    font-weight: bold;
+    justify-content: center;
+    text-align: center;
+    color: rgb(32, 29, 29);
+}
+
+p a {
+    font-size: 15px;
+    color: rgba(237, 241, 243, 0.899);
+    margin-left: 2%;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: underline;
+    justify-content: center;
+    text-align: center;
+    color: rgb(244, 255, 198);
+}
+
+.succ-msg {
+    color: #0ed23c;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    position: relative;
+    top: 10px;
+}
+
+.err-msg {
+    color: #f7324c;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    position: relative;
+    top: 10px;
+}

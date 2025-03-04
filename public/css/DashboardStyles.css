@@ -1,0 +1,16 @@
+body {
+    /* background-color: rgb(212, 127, 255); */
+}
+
+.sec1 {
+    /* background-color: aqua; */
+    margin: 0;
+    padding: 0;
+    margin-top: 100px;
+}
+
+.sec1 #createConf {
+
+    background-image: url("https://images.squarespace-cdn.com/content/v1/55e4e30de4b04628c9f8841d/1639677596584-YEESZ16BFSVE2YVMHU83/Website%252BPhoto%252BBlueprint.jpg?format=2500w");
+    background-size: cover;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login - Conference Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/loginStyles.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="/images/logo.jpg" alt="cms" />
+
+                <div class="logo-text">Conference Management</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/index">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+
+        <img src="https://t3.ftcdn.net/jpg/09/61/27/48/360_F_961274808_fX06eKzHJDCX9LO1Uew8YsL8Gk7RDZBu.jpg"
+            class="bg-img">
+
+
+        <div class="rform">
+
+            <% if (messages.success_msg) { %>
+                <p class="success-msg">
+                    <%= messages.success_msg %>
+                </p>
+                <% } %>
+                    <% if (messages.error) { %>
+                        <p class="error-msg">
+                            <%= messages.error %>
+                        </p>
+                        <% } %>
+
+                            <!-- <% if (isAuthenticated) { %>
+            <p>You are already logged in as <%= user.email %> (<%= user.role %>).</p>
+            <a href="/logout"><button class="btn-logout">Logout</button></a>
+            <p>Or log in as a different user:</p>
+        <% } %> -->
+
+                            <form action="/login" method="POST" onsubmit="return validateForm()">
+                                <h2>Login</h2>
+                                <input type="email" name="email" placeholder="Email" required>
+                                <input type="password" name="password" placeholder="Password" required>
+                                <button class="btn-assign" id="submitbtn" type="submit">Login</button>
+                                <p>Don't have an account? <a href="/register">Register</a></p>
+                            </form>
+
+        </div>
+    </main>
+
+    <script>
+        function validateForm() {
+            const email = document.querySelector('input[name="email"]').value;
+            const password = document.querySelector('input[name="password"]').value;
+            if (!email || !password) {
+                alert("Please enter both email and password.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

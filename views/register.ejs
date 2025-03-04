@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Register - Conference Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/regStyles.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="/images/logo.jpg" alt="cms" />
+                <div class="logo-text">Conference Management</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/index">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
+        <div>
+            <img class="regimg" src="images/regimg.png" alt="registrimg">
+        </div>
+        <div class="rform">
+
+            <!-- For the successful registration -->
+            <% if (messages.success_msg) { %>
+                <div class="succ-msg">
+                    <%= messages.success_msg %>
+                </div>
+                <% } %>
+                    <% if (messages.error) { %>
+                        <div class="err-msg">
+                            <%= messages.error %>
+                        </div>
+                        <% } %>
+
+
+                            <form action="/register" method="POST">
+                                <h2>Register</h2>
+                                <input type="text" name="name" placeholder="Full Name" required>
+                                <input type="email" name="email" placeholder="Email" required>
+                                <input type="password" name="password" placeholder="Password" required>
+                                <br>
+                                <label for="role">Register As :</label>
+                                <select name="role" required>
+                                    <option value="" disabled selected>Select Role</option>
+                                    <option value="author">Author</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                                <br>
+                                <button id="submitbtn" class="btn-assign" type="submit">Register</button>
+                                <p>Already have an account? <a href="/login">Login</a></p>
+                            </form>
+
+        </div>
+    </main>
+</body>
+
+</html>

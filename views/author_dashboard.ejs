@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Author Dashboard - Conference Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="/images/logo.jpg" alt="cms" />
+            </div>
+            <div class="navlogo">Conference Management</div>
+            <ul class="nav-links">
+                <li><a href="/author/dashboard">Dashboard</a></li>
+                <li class="dropdown">
+                    <button class="dropdown-btn">Logout</button>
+                    <div class="dropdown-content">
+                        <a href="/logout">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Author Dashboard</h2>
+        <% if (locals.success_msg && typeof success_msg === 'string' && success_msg.trim()) { %>
+            <p class="success-msg"><%= success_msg %></p>
+        <% } else if (Array.isArray(locals.success_msg) && locals.success_msg.length > 0) { %>
+            <% locals.success_msg.forEach(msg => { %>
+                <p class="success-msg"><%= msg %></p>
+            <% }) %>
+        <% } %>
+        <% if (locals.error_msg && typeof error_msg === 'string' && error_msg.trim()) { %>
+            <p class="error-msg"><%= error_msg %></p>
+        <% } else if (Array.isArray(locals.error_msg) && locals.error_msg.length > 0) { %>
+            <% locals.error_msg.forEach(msg => { %>
+                <p class="error-msg"><%= msg %></p>
+            <% }) %>
+        <% } %>
+
+        <h3>Submit Paper</h3>
+        <form action="/author/submit-paper" method="POST" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Paper Title" required>
+            <textarea name="abstract" placeholder="Abstract"></textarea>
+            <select name="conference" required>
+                <option value="" disabled selected>Select Conference</option>
+                <% conferences.forEach(conference => { %>
+                    <option value="<%= conference._id %>"><%= conference.name %></option>
+                <% }) %>
+            </select>
+            <input type="file" name="file" accept=".pdf" required>
+            <button class="btn-assign" type="submit">Submit Paper</button>
+        </form>
+
+        <h3>Your Papers</h3>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Conference</th>
+                <th>Status</th>
+                <th>File</th>
+            </tr>
+            <% papers.forEach(paper => { %>
+            <tr>
+                <td><%= paper.title %></td>
+                <td><%= paper.conference.name %></td>
+                <td><%= paper.status %></td>
+                <td><a href="/files/download/<%= paper.filename %>" download="<%= paper.filename %>">Download</a></td>
+            </tr>
+            <% }) %>
+        </table>
+    </main>
+</body>
+</html>

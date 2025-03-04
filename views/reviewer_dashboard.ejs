@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Reviewer Dashboard - Conference Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <!-- <style>
+        .navimage {
+            height: 1px; /* Adjust height as needed */
+    width: 12px;
+    transition: transform 0.3s ease;
+    margin-left: -160px;
+
+
+        }
+        .navtext {
+            position: absolute;
+  left: 190px;
+  top: 30px;
+  font-size: 2rem;
+    /* margin-left: -440px; */
+    background: linear-gradient(45deg,yellow,brown);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: bold;
+
+        }
+
+    </style> -->
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <!-- <div class="navimage">
+                <img src="/images/logo.jpg" alt="cms" />
+            </div> -->
+            <div class="logo">Conference Management</div>
+            <ul class="nav-links">
+                <li><a href="/reviewer/dashboard">Dashboard</a></li>
+                <li class="dropdown">
+                    <button class="dropdown-btn">User</button>
+                    <div class="dropdown-content">
+                        <a href="/logout">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Reviewer Dashboard</h2>
+        <p>Welcome, <%= reviewer.name %> (<%= reviewer.email %>)</p>
+        <% if (locals.success_msg) { %>
+            <p class="success-msg">
+                <%= success_msg %>
+            </p>
+            <% } %>
+                <% if (locals.error_msg) { %>
+                    <p class="error-msg">
+                        <%= error_msg %>
+                    </p>
+                    <% } %>
+
+                        <h3>Assigned Papers</h3>
+                        <table>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Conference</th>
+                                <th>Download</th>
+                                <th>Review</th>
+                            </tr>
+                            <% papers.forEach(paper=> { %>
+                                <tr>
+                                    <td>
+                                        <%= paper.title %>
+                                    </td>
+                                    <td>
+                                        <%= paper.author.name %> (<%= paper.author.email %>)
+                                    </td>
+                                    <td>
+                                        <%= paper.conference.name %>
+                                    </td>
+                                    <td><a href="/files/download/<%= paper.filename %>"
+                                            download="<%= paper.filename %>">Download PDF</a></td>
+                                    <td>
+                                        <form action="/reviewer/submit-review/<%= paper._id %>" method="POST">
+                                            <textarea name="comments" placeholder="Your comments" required></textarea>
+                                            <input type="number" name="score" placeholder="Score (1-10)" min="1"
+                                                max="10" required>
+                                            <button class="btn-assign" type="submit">Submit Review</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </table>
+    </main>
+</body>
+
+</html>

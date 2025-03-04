@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/contactS.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="/images/logo.jpg" alt="cms" />
+
+                <div class="logo-text">Conference Management</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/index">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <!-- <li><a href="/contact">Contact</a></li> -->
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="detail">
+            <h1>Contact Details</h1>
+            <div class="contact-details">
+
+                <div id="upper">
+                    <div id="swatidoc">
+                        <p><b>Name</b>: SWATI MEHTA</p>
+                        <p><b>Email</b>: 21052717@kiit.ac.in</p>
+                        <p><b>Phone</b>: 9065509205</p>
+                    </div>
+                    <div id="prakhardoc">
+                        <p><b>Name</b>: PRAKHAR PARTH</p>
+                        <p><b>Email</b>: 21052514@kiit.ac.in</p>
+                        <p><b>Phone</b>: 9142643028</p>
+                    </div>
+                    <div id="riyadoc">
+                        <p><b>Name</b>: RIYA CHANDA</p>
+                        <p><b>Email</b>: 21052711@kiit.ac.in</p>
+                        <p><b>Phone</b>: 8709561491</p>
+                    </div>
+                    <div id="prakhardoc">
+                        <p><b>Name</b>: RAJASHREE DEB</p>
+                        <p><b>Email</b>: 2105564@kiit.ac.in</p>
+                        <p><b>Phone</b>: 7908426608</p>
+                    </div>
+                    <div id="ariondoc">
+                        <p><b>Name</b>: ARION LEONEL BAROL </p>
+                        <p><b>Email</b>: 2105677@kiit.ac.in</p>
+                        <p><b>Phone</b>: 7846957116</p>
+                    </div>
+                    <div id="prakhardoc">
+                        <p><b>Name</b>: ATUL PREM</p>
+                        <p><b>Email</b>: 2128069@kiit.ac.in</p>
+                        <p><b>Phone</b> : 7250769681</p>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </section>
+        <section>
+
+            <% if (success_msg) { %>
+                <p style="color: green;">
+                    <%= success_msg %>
+                </p>
+                <% } %>
+                    <% if (error_msg) { %>
+                        <p style="color: red;">
+                            <%= error_msg %>
+                        </p>
+                        <% } %>
+
+
+                            <form id="feedbackForm">
+                                <h2>Feedback</h2>
+                                <label>Name:</label>
+                                <input type="text" id="name" name="name" required> <br>
+
+                                <label>Email:</label>
+                                <input type="email" id="email" name="email" required> <br>
+
+                                <label>Message:</label>
+                                <textarea id="message" name="message" required></textarea> <br>
+
+                                <button type="submit">Submit</button>
+                            </form>
+
+                            <!-- Success Modal -->
+                            <div class="modal fade" id="feedbackModal" tabindex="-1"
+                                aria-labelledby="feedbackModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="feedbackModalLabel">Success</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Feedback sent successfully!
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary"
+                                                data-bs-dismiss="modal">OK</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        </section>
+    </main>
+</body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("feedbackForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+            const submitButton = document.querySelector("#feedbackForm button");
+
+            // Disable the button and change text
+            submitButton.disabled = true;
+            submitButton.innerText = "Sending...";
+
+            try {
+                const response = await fetch("/send-feedback", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, message }),
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    let feedbackModal = new bootstrap.Modal(document.getElementById("feedbackModal"));
+                    feedbackModal.show();
+
+                    // Reset form after success
+                    document.getElementById("feedbackForm").reset();
+                } else {
+                    alert("Failed to send feedback. Please try again.");
+                }
+            } catch (error) {
+                alert("Error sending feedback. Check your internet connection.");
+            }
+
+            // Re-enable button after request completes
+            submitButton.disabled = false;
+            submitButton.innerText = "Send Feedback";
+        });
+    });
+
+</script>
+
+</html>

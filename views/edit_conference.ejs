@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Conference - EasyChair Clone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">EasyChair Clone</div>
+            <ul class="nav-links">
+                <li><a href="/admin/dashboard">Dashboard</a></li>
+                <li class="dropdown">
+                    <button class="dropdown-btn">User</button>
+                    <div class="dropdown-content">
+                        <a href="/logout">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Edit Conference</h2>
+        <form action="/admin/update-conference/<%= conference._id %>" method="POST">
+            <label>Name:</label>
+            <input type="text" name="name" value="<%= conference.name %>" placeholder="Conference Name" required>
+            
+            <label>Description:</label>
+            <textarea name="description" placeholder="Description" required><%= conference.description %></textarea>
+
+            <label>Start Date:</label>
+            <input type="date" name="startDate" value="<%= conference.startDate.toISOString().split('T')[0] %>" required>
+
+            <label>End Date:</label>
+            <input type="date" name="endDate" value="<%= conference.endDate.toISOString().split('T')[0] %>" required>
+
+            <button type="submit" class="btn-assign">Update Conference</button>
+        </form>
+        <a href="/admin/dashboard">Back to Dashboard</a>
+    </main>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Conference Management - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/indexStyle.css">
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="/images/logo.jpg" alt="cms" />
+
+                <div class="logo-text">Conference Management</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/index">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <p class="para">
+                <marquee behavior="scrolling" direction="left" scrollamount="10">
+                    <b style="font-style: italic;">"Welcome to Conference Management Software" </b> Manage your
+                    conferences, submissions, and
+                    reviews efficiently with our advanced platform.
+                </marquee>
+            </p>
+            <div class="hero-left">
+                <h6>Conference Management Software</h6>
+                <p>COMS is a comprehensive conference management system designed for academic and scientific events. We
+                    provide meaningful support to organizers as well as a tool to manage the key requirements of their
+                    conference in one place. <a href=""> Benefits of using COMS</a></p>
+            </div>
+            <div class="hero-right">
+                <img id="slider-image" src="/images/img.png" alt="Conference Image">
+                <div class="slider-buttons">
+                    <button id="left" class="btn-slide" onclick="prevImage()">❮</button>
+                    <button id="right" class="btn-slide" onclick="nextImage()">❯</button>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="about" class="section">
+            <h2>About Us</h2>
+            <p>Conference Management is a powerful tool designed to streamline conference management, paper
+                submissions,
+                and peer reviews. Our platform ensures a seamless experience for administrators, authors, and
+                reviewers
+                alike.</p>
+        </section>
+    </main>
+    <footer class="footer">
+
+        <p>&copy; 2025 Conference Management. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+
+
+        //image part
+        const images = [
+            "/images/kiit.jpg",
+            "/images/imgg.jpg",
+            "/images/cmp.jpg",
+            "/images/ch.jpg",
+            "https://www.kiitmun.org/_next/image?url=https:%2F%2Fres.cloudinary.com%2Fde7hlbfce%2Fimage%2Fupload%2Fv1721116274%2FKIITMUN2024%2FAbout%2520us%2Fskq0esjxudqeszjhbmpd.webp&w=2048&q=75",
+            "/images/imag.jpg"
+        ];
+
+        let index = 0;
+
+        function updateImage() {
+            document.getElementById("slider-image").src = images[index];
+        }
+
+        function nextImage() {
+            index = (index + 1) % images.length;
+            updateImage();
+        }
+
+        function prevImage() {
+            index = (index - 1 + images.length) % images.length;
+            updateImage();
+        }
+
+        setInterval(nextImage, 6000);
+        updateImage();
+
+
+
+    </script>
+
+</body>
+
+</html>

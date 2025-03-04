@@ -1,0 +1,132 @@
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+}
+
+
+
+body {
+    overflow-x: hidden;
+}
+
+/* Main */
+body,
+main {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+
+.hero {
+    width: 100%;
+    min-height: 70vh;
+    margin-top: 130px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hero .para {
+    position: fixed;
+    top: 84.7px;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    color: rgb(216, 206, 206);
+    background-color: rgb(0, 0, 32);
+    z-index: 1000;
+    padding-top: 4px;
+    box-shadow: 0px 1px 8px rgba(238, 238, 3, 0.882);
+}
+
+.hero-right img {
+    max-width: 700px;
+    height: 92%;
+    margin-right: -102px;
+}
+
+.hero-left {
+    flex: 1;
+    padding: 2rem;
+    background-color: rgb(1, 35, 24);
+    height: 64.4vh
+}
+
+.hero-left h6 {
+    font-size: 1.5rem;
+    color: #8b0202;
+
+}
+
+.hero-left p {
+    font-size: 1.1rem;
+    color: #edbcbc;
+
+}
+
+
+
+
+/* slider Button */
+.slider-buttons #left {
+    position: absolute;
+    top: 40%;
+}
+
+.slider-buttons #right {
+    position: absolute;
+    right: -58px;
+    top: 40%;
+}
+
+.btn-slide {
+    background: transparent;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 2rem;
+    border-radius: 8px;
+    color: rgb(221, 210, 251);
+}
+
+
+
+/* About section */
+#about {
+
+    background-image: url("https://media.istockphoto.com/id/1416335096/photo/businessman-hand-holding-smart-phone-with-icon-mobile-phone-mail-telephone-and-address.jpg?s=612x612&w=0&k=20&c=ajOYHJPqlaKZ04BeSf5m3MsuZ_YGyxrUqEGMaS1hGGk=");
+    background-size: cover;
+    padding-bottom: 60px;
+    position: relative;
+    left: 30px;
+    top: -20px;
+    width: 100%;
+    padding-left: 20px;
+    color: #bfbbbb;
+
+}
+
+
+
+/* Footer */
+.footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    /* padding: 3rem; */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    height: 40px;
+    padding-top: 2px;
+}

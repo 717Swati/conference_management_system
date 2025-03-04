@@ -1,0 +1,220 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f5f5;
+    overflow-x: hidden;
+    /* Prevents horizontal scrolling */
+    width: 100%;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+}
+
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+h1 {
+    text-decoration: underline;
+    position: relative;
+    left: 530px;
+    top: 60px;
+
+}
+
+.detail h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.detail {
+    background-image: url("https://img.freepik.com/free-photo/top-view-blue-monday-concept-composition-with-telephone_23-2149139104.jpg?ga=GA1.1.1567063507.1740919633&semt=ais_hybrid");
+    background-size: cover;
+    width: 100%;
+    /* margin: 40px auto; */
+    min-height: 750px;
+}
+
+/* Contact Details */
+.contact-details {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: rgb(172, 235, 246);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 600px;
+    position: relative;
+    top: 92px;
+    left: 120px;
+}
+
+#upper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#upper div {
+    background: #7bd5f9;
+    color: rgb(14, 14, 15);
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 250px;
+}
+
+#upper p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+/* Feedback Form */
+#feedbackForm {
+    background: url('https://img.freepik.com/free-photo/top-view-assortment-desk-elements-with-empty-notebook-phone_23-2148513334.jpg?t=st=1740991168~exp=1740994768~hmac=dac7bbdd36261a15423222df75761cecefaa94a78c0d2f9d30f2dfc0c0fa81e0&w=1800') no-repeat center center;
+    background-size: cover;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    width: 100%;
+    margin: 40px auto;
+    min-height: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Centers horizontally */
+    text-align: center;
+    /* Centers text */
+}
+
+#feedbackForm h2 {
+    position: relative;
+    /* top: 50%; */
+    bottom: 45px;
+    right: 90px;
+    color: rgb(16, 16, 15);
+    font-size: 2.4rem;
+    font-weight: bold;
+
+}
+
+/* Centering form elements */
+#feedbackForm input,
+#feedbackForm textarea {
+    background-color: #7cfee4;
+    border: 2px solid black;
+
+    padding: 12px;
+    width: 30%;
+    border-radius: 5px;
+    font-size: 16px;
+
+    position: relative;
+    top: 70px;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+#feedbackForm textarea {
+    width: 30%;
+    /* Increase width */
+    height: 150px;
+    /* Increase height */
+    resize: vertical;
+    /* Allows users to resize vertically */
+
+
+}
+
+#feedbackForm label {
+    color: #0c0c0c;
+    position: relative;
+    top: 70px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+#feedbackForm button {
+    background: #012041;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 12px;
+    font-size: 15px;
+    border: 2px solid black;
+    border-radius: 20px;
+    width: 15%;
+    /* Adjust width */
+    /* margin-top: 210px; */
+    position: relative;
+    /* top: 50%; */
+    /* bottom: 100px; */
+    top: 63px;
+    /* right: 10px; */
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+#feedbackForm button:hover {
+    background: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #feedbackForm {
+        width: 90%;
+        min-height: 350px;
+    }
+
+    #feedbackForm input,
+    #feedbackForm textarea,
+    #feedbackForm button {
+        width: 90%;
+    }
+}
+
+
+
+/* Modal Styles */
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    background: #007bff;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-footer button {
+    background: #007bff;
+    border: none;
+    padding: 8px 15px;
+    color: white;
+    border-radius: 5px;
+}
+
+.modal-footer button:hover {
+    background: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #upper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #upper div {
+        width: 100%;
+    }
+
+    .contact-details {
+        width: 90%;
+    }
+}

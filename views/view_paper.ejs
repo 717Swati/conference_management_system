@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Paper Details - EasyChair Clone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">EasyChair Clone</div>
+            <ul class="nav-links">
+                <li><a href="/admin/dashboard">Dashboard</a></li>
+                <li class="dropdown">
+                    <button class="dropdown-btn">User</button>
+                    <div class="dropdown-content">
+                        <a href="/logout">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Paper Details</h2>
+        <% if (locals.success_msg) { %>
+            <p class="success-msg"><%= success_msg %></p>
+        <% } %>
+        <% if (locals.error_msg) { %>
+            <p class="error-msg"><%= error_msg %></p>
+        <% } %>
+
+        <div class="paper-details">
+            <p><strong>Title:</strong> <%= paper.title %></p>
+            <p><strong>Abstract:</strong> <%= paper.abstract || "No abstract provided" %></p>
+            <p><strong>Author:</strong> <%= paper.author.name %> (<%= paper.author.email %>)</p>
+            <p><strong>Conference:</strong> <%= paper.conference.name %></p>
+            <p><strong>Status:</strong> <%= paper.status %></p>
+            <% if (paper.filename) { %>
+                <a href="/files/download/<%= paper.filename %>" download="<%= paper.filename %>" class="btn-download">Download PDF</a>
+            <% } else { %>
+                <p>No file uploaded.</p>
+            <% } %>
+        </div>
+
+        <h3>Assigned Reviewers</h3>
+        <ul class="reviewer-list">
+            <% paper.reviewers.forEach(reviewer => { %>
+                <li><%= reviewer.name %> (<%= reviewer.email %>)</li>
+            <% }) %>
+        </ul>
+
+        <h3>Reviews</h3>
+        <div class="reviews">
+            <% if (paper.reviews && paper.reviews.length > 0) { %>
+                <% paper.reviews.forEach(review => { %>
+                    <div class="review">
+                        <p><strong>Reviewer:</strong> <%= review.reviewer.name %> (<%= review.reviewer.email %>)</p>
+                        <p><strong>Comments:</strong> <%= review.comments %></p>
+                        <p><strong>Score:</strong> <%= review.score %>/10</p>
+                        <p><strong>Date:</strong> <%= review.date.toDateString() %></p>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>No reviews submitted yet.</p>
+            <% } %>
+        </div>
+
+        <h3>Rejected Reviewers</h3>
+        <div class="rejected">
+            <% if (paper.rejectedReviewers && paper.rejectedReviewers.length > 0) { %>
+                <% paper.rejectedReviewers.forEach(reviewer => { %>
+                    <div class="rejected-reviewer">
+                        <p><strong>Reviewer:</strong> <%= reviewer.name %> (<%= reviewer.email %>) - <span style="color:red;">Rejected the invitation</span></p>
+                    </div>
+                <% }) %>
+                <p style="color:#ff4500;">Please assign another reviewer.</p>
+            <% } else { %>
+                <p>No reviewers have rejected this invitation yet.</p>
+            <% } %>
+        </div>
+
+        <% if (paper.status === "Pending" && paper.reviews && paper.reviews.length > 0) { %>
+            <h3>Decision</h3>
+            <div class="decision-actions">
+                <form action="/admin/accept-paper/<%= paper._id %>" method="POST" style="display:inline;">
+                    <button type="submit" class="btn-accept">Accept Paper</button>
+                </form>
+                <form action="/admin/reject-paper/<%= paper._id %>" method="POST" style="display:inline;">
+                    <button type="submit" class="btn-reject">Reject Paper</button>
+                </form>
+            </div>
+        <% } %>
+
+        <h3>Assign Reviewer</h3>
+        <form action="/admin/assign-reviewer/<%= paper._id %>" method="POST" class="assign-form">
+            <select name="reviewerId" required>
+                <option value="" disabled selected>Select Reviewer</option>
+                <% reviewers.forEach(reviewer => { %>
+                    <option value="<%= reviewer._id %>"><%= reviewer.name %> (<%= reviewer.email %>)</option>
+                <% }) %>
+            </select>
+            <button type="submit" class="btn-assign">Assign Reviewer</button>
+        </form>
+
+        <!-- Add New Reviewer Button -->
+        <button onclick="openAddReviewerModal()" class="btn-add-reviewer">Add New Reviewer</button>
+
+        <!-- Pop-up Modal for Adding Reviewer -->
+        <div id="addReviewerModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeAddReviewerModal()">×</span>
+                <h2>Add New Reviewer</h2>
+                <form action="/admin/add-reviewer" method="POST" class="modal-form">
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit" class="btn-assign">Add Reviewer</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript for Modal -->
+    <script>
+        function openAddReviewerModal() {
+            document.getElementById("addReviewerModal").style.display = "block";
+        }
+
+        function closeAddReviewerModal() {
+            document.getElementById("addReviewerModal").style.display = "none";
+        }
+    </script>
+</body>
+</html>
